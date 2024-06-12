@@ -28,7 +28,7 @@ import (
 )
 
 var proto = flag.String("proto", "https://", "Grafana Protocol. Change to 'https://' if Grafana is using https. Reporter will still serve http.")
-var ip = flag.String("ip", "localhost:3000", "Grafana IP and port.")
+var ip = flag.String("ip", "ngpmonitor.altius.cc:3000", "Grafana IP and port.")
 var port = flag.String("port", ":8686", "Port to serve on.")
 var templateDir = flag.String("templates", "templates/", "Directory for custom TeX templates.")
 var sslCheck = flag.Bool("ssl-check", true, "Check the SSL issuer and validity. Set this to false if your Grafana serves https using an unverified, self-signed certificate.")
@@ -83,6 +83,8 @@ func main() {
 			log.Fatalln(err)
 		}
 	} else {
-		log.Fatal(http.ListenAndServe(*port, router))
+		log.Fatal(http.ListenAndServeTLS(*port,
+			"/root/STAR_altius_cc.crt"
+			"/root/STAR_altius_cc.key", router))
 	}
 }
