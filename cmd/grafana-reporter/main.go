@@ -83,8 +83,7 @@ func main() {
 			log.Fatalln(err)
 		}
 	} else {
-		log.Fatal(http.ListenAndServeTLS(*port,
-			"/root/STAR_altius_cc.crt",
-			"/root/STAR_altius_cc.key", router))
+		log.Fatal(http.ListenAndServeTLS(*port,"
+/etc/grafana/grafana.crt","/etc/grafana/grafana.key", router))
 	}
 }
