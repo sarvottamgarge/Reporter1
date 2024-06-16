@@ -85,6 +85,6 @@ func main() {
 	} else {
 		log.Fatal(http.ListenAndServeTLS(*port,
 			"/root/STAR_altius_cc.crt"
-			"/root/STAR_altius_cc.key", router))
+			"/root/STAR_altius_cc.key", router)
 	}
 }
