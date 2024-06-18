@@ -31,8 +31,8 @@ var proto = flag.String("proto", "https://", "Grafana Protocol. Change to 'https
 var ip = flag.String("ip", "ngpmonitoruat.altius.cc:3000", "Grafana IP and port.")
 var port = flag.String("port", ":8686", "Port to serve on.")
 var templateDir = flag.String("templates", "templates/", "Directory for custom TeX templates.")
-var sslCheck = flag.Bool("ssl-check", true, "Check the SSL issuer and validity. Set this to false if your Grafana serves https using an unverified, self-signed certificate.")
-var gridLayout = flag.Bool("grid-layout", false, "Enable grid layout (-grid-layout=1). Panel width and height will be calculated based off Grafana gridPos width and height.")
+var sslCheck = flag.Bool("ssl-check", false, "Check the SSL issuer and validity. Set this to false if your Grafana serves https using an unverified, self-signed certificate.")
+var gridLayout = flag.Bool("grid-layout", true, "Enable grid layout (-grid-layout=1). Panel width and height will be calculated based off Grafana gridPos width and height.")
 
 //cmd line mode params
 var cmdMode = flag.Bool("cmd_enable", false, "Enable command line mode. Generate report from command line without starting webserver (-cmd_enable=1).")
@@ -83,7 +83,6 @@ func main() {
 			log.Fatalln(err)
 		}
 	} else {
-		log.Fatal(http.ListenAndServeTLS(*port,"/etc/grafana/grafana.crt",
-						 "/etc/grafana/grafana.key",router))
+		log.Fatal(http.ListenAndServeTLS(*port, router))
 	}
 }
