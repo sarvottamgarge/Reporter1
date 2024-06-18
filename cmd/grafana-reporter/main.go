@@ -83,6 +83,6 @@ func main() {
 			log.Fatalln(err)
 		}
 	} else {
-		log.Fatal(http.ListenAndServeTLS(*port, router))
+		log.Fatal(http.ListenAndServe(*port, router))
 	}
 }
